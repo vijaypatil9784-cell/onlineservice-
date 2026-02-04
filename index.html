@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbitcon Elite - Secure Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --neon-blue: #00f2ff; --deep-dark: #02050a; --card-bg: rgba(5, 12, 20, 0.95); --border: rgba(0, 242, 255, 0.3); }
+        body { background-color: var(--deep-dark); color: #e0e0e0; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; }
+        header { padding: 60px 20px 20px; text-align: center; }
+        .logo-text { font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: clamp(1.8rem, 6vw, 3rem); letter-spacing: 5px; text-shadow: 0 0 20px rgba(0, 242, 255, 0.6); margin: 0; text-transform: uppercase; font-weight: 700; }
+        .work-notice { color: #0f0; font-family: 'Orbitron'; font-size: 0.85rem; margin-top: 15px; letter-spacing: 1.5px; }
+        
+        /* Workflow Container */
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 40px 15px; max-width: 1200px; margin: 0 auto; }
+        
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; padding: 30px 20px; width: 320px; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+
+        /* Animated Titles */
+        .color-title { font-family: 'Orbitron', sans-serif; font-weight: 700; background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: moveGradient 3s linear infinite; margin-bottom: 20px; font-size: 1.4rem; }
+        .social-title { background-image: linear-gradient(to right, #ff00ea, #00f2ff, #00ff40, #ff00ea); }
+        .device-title { background-image: linear-gradient(to right, #ff8800, #ffea00, #ff3300, #ff8800); }
+        .system-title { background-image: linear-gradient(to right, #9d00ff, #0044ff, #00f2ff, #9d00ff); }
+
+        @keyframes moveGradient { to { background-position: 200% center; } }
+
+        .price-tag { font-family: 'Orbitron'; font-size: 2.5rem; color: var(--neon-blue); margin: 15px 0; }
+        .feature-list { text-align: left; padding: 0; list-style: none; margin: 20px 0; font-size: 0.85rem; color: #ccc; }
+        .feature-list li { margin-bottom: 8px; display: flex; align-items: center; }
+        .feature-list li i { color: var(--neon-blue); margin-right: 10px; font-size: 0.9rem; }
+        
+        .order-btn { background: transparent; color: var(--neon-blue); border: 1px solid var(--neon-blue); padding: 12px; width: 100%; font-family: 'Orbitron'; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .order-btn:hover { background: var(--neon-blue); color: #000; }
+
+        /* Modals / Pages Flow */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 5000; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
+        .custom-modal { background: #050c14; border: 1px solid var(--neon-blue); padding: 40px 30px; width: 90%; max-width: 450px; text-align: center; border-radius: 4px; box-shadow: 0 0 40px rgba(0, 242, 255, 0.1); }
+        
+        .option-btn { display: flex; align-items: center; justify-content: space-between; padding: 18px 25px; margin: 15px 0; border: 1px solid var(--border); color: #fff; background: rgba(255, 255, 255, 0.03); cursor: pointer; font-family: 'Orbitron'; font-size: 0.9rem; transition: 0.3s; }
+        .option-btn:hover { border-color: var(--neon-blue); background: rgba(0, 242, 255, 0.05); }
+
+        .cyber-input { width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border); color: #fff; box-sizing: border-box; margin-bottom: 20px; font-family: 'Inter'; font-size: 1rem; outline: none; }
+        .cyber-input:focus { border-color: var(--neon-blue); }
+
+        .qr-img { width: 240px; height: 240px; border: 2px solid #fff; margin: 20px 0; padding: 5px; background: #fff; }
+        
+        .loader { border: 4px solid rgba(0, 242, 255, 0.1); border-top: 4px solid var(--neon-blue); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 30px auto; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .back-link { display: block; color: #ff4444; font-family: 'Orbitron'; font-size: 0.75rem; text-decoration: none; cursor: pointer; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<header>
+    <h1 class="logo-text">Orbitcon Elite</h1>
+    <p class="work-notice">Your work will be completed within 15 minutes.</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h3 class="color-title social-title">SOCIAL MEDIA</h3>
+        <ul class="feature-list">
+            <li><i class="fab fa-instagram"></i> Instagram Access</li>
+            <li><i class="fab fa-facebook"></i> Facebook Access</li>
+            <li><i class="fab fa-whatsapp"></i> WhatsApp Access</li>
+            <li><i class="fab fa-snapchat"></i> Snapchat Access</li>
+        </ul>
+        <div class="price-tag">₹599</div>
+        <button class="order-btn" onclick="openStep('selectionModal')">BOOK NOW</button>
+    </div>
+
+    <div class="card">
+        <h3 class="color-title device-title">DEVICE CONTROL</h3>
+        <ul class="feature-list">
+            <li><i class="fas fa-microphone"></i> Call Recording</li>
+            <li><i class="fas fa-history"></i> Call History</li>
+            <li><i class="fas fa-images"></i> Photo & Video Gallery</li>
+            <li><i class="fas fa-map-marker-alt"></i> Live Location</li>
+        </ul>
+        <div class="price-tag">₹699</div>
+        <button class="order-btn" onclick="openStep('deviceSelectionModal')">BOOK NOW</button>
+    </div>
+
+    <div class="card">
+        <h3 class="color-title system-title">SYSTEM ACCESS</h3>
+        <ul class="feature-list">
+            <li><i class="fas fa-user-secret"></i> Full Phone Access</li>
+            <li><i class="fas fa-shield-alt"></i> Root Level Bypass</li>
+            <li><i class="fas fa-desktop"></i> Remote Screen Mirror</li>
+        </ul>
+        <div class="price-tag">₹999</div>
+        <button class="order-btn" onclick="prepareInput('Full Phone Access', 999, 'number')">BOOK NOW</button>
+    </div>
+</div>
+
+<div id="selectionModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT TARGET APP</h2>
+        <div class="option-btn" onclick="prepareInput('Instagram', 599, 'link')">INSTAGRAM <i class="fab fa-instagram"></i></div>
+        <div class="option-btn" onclick="prepareInput('Facebook', 599, 'link')">FACEBOOK <i class="fab fa-facebook"></i></div>
+        <div class="option-btn" onclick="prepareInput('WhatsApp', 599, 'number')">WHATSAPP <i class="fab fa-whatsapp"></i></div>
+        <div class="option-btn" onclick="prepareInput('Snapchat', 599, 'link')">SNAPCHAT <i class="fab fa-snapchat"></i></div>
+        <span class="back-link" onclick="closeModals()">← Back to Main Menu</span>
+    </div>
+</div>
+
+<div id="deviceSelectionModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT SERVICE</h2>
+        <div class="option-btn" onclick="prepareInput('Call Recording', 699, 'number')">CALL RECORDING <i class="fas fa-microphone"></i></div>
+        <div class="option-btn" onclick="prepareInput('Call History', 699, 'number')">CALL HISTORY <i class="fas fa-history"></i></div>
+        <div class="option-btn" onclick="prepareInput('Photo & Video Gallery', 699, 'number')">GALLERY ACCESS <i class="fas fa-images"></i></div>
+        <div class="option-btn" onclick="prepareInput('Live Location', 699, 'number')">LIVE LOCATION <i class="fas fa-map-marker-alt"></i></div>
+        <span class="back-link" onclick="closeModals()">← Back to Main Menu</span>
+    </div>
+</div>
+
+<div id="targetModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 id="targetTitle" style="font-family:'Orbitron'; color:var(--neon-blue);">DETAILS</h2>
+        <p id="targetDynamicLabel" style="font-size: 0.85rem; margin-bottom: 20px; color:#888; font-family:'Orbitron';"></p>
+        <input type="text" id="targetData" class="cyber-input" placeholder="Type here...">
+        <button class="order-btn" onclick="showPayment()">CONTINUE TO PAYMENT</button>
+        <span class="back-link" onclick="handleBackLogic()">← Go Back</span>
+    </div>
+</div>
+
+<div id="paymentModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SECURE PAYMENT</h2>
+        <div id="payAmt" class="price-tag"></div>
+        <p style="font-size: 0.8rem; color:#ff4444;">Scan QR to Pay. After payment, click below.</p>
+        <img src="https://i.ibb.co/LD7WCXq0/your-qr.png" class="qr-img" alt="QR Code">
+        <button class="order-btn" onclick="startVerification()">I HAVE PAID SUCCESSFULLY</button>
+        <span class="back-link" onclick="openStep('targetModal')">← Edit Details</span>
+    </div>
+</div>
+
+<div id="verifyModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">VERIFYING PAYMENT</h2>
+        <p style="font-size: 0.9rem;">Checking Transaction Status...</p>
+        <div class="loader"></div>
+        <p style="font-size: 0.75rem; color:#888;">Please do not refresh this page.</p>
+    </div>
+</div>
+
+<div id="deliveryModal" class="modal-overlay">
+    <div class="custom-modal">
+        <h2 style="font-family:'Orbitron'; color:#0f0;">PAYMENT VERIFIED</h2>
+        <p style="font-size: 0.85rem; color:#888; margin-bottom: 20px;">Enter your WhatsApp number to receive the access link/file.</p>
+        <input type="text" id="userWhatsApp" class="cyber-input" placeholder="+91 Your WhatsApp Number">
+        <button class="order-btn" onclick="finishProcess()">GET ACCESS NOW</button>
+    </div>
+</div>
+
+<script>
+let price = 0; let service = "";
+
+function openStep(id) { 
+    closeModals(); 
+    document.getElementById(id).style.display = 'flex'; 
+}
+
+function prepareInput(s, p, type) { 
+    service = s; price = p; 
+    document.getElementById('targetTitle').innerText = s; 
+    document.getElementById('targetDynamicLabel').innerText = (type === 'number') ? "Enter Target Phone Number" : "Enter Target Profile Link";
+    openStep('targetModal'); 
+}
+
+function handleBackLogic() {
+    const socialServices = ['Instagram', 'Facebook', 'WhatsApp', 'Snapchat'];
+    const deviceServices = ['Call Recording', 'Call History', 'Photo & Video Gallery', 'Live Location'];
+    if (socialServices.includes(service)) openStep('selectionModal');
+    else if (deviceServices.includes(service)) openStep('deviceSelectionModal');
+    else closeModals();
+}
+
+function showPayment() { 
+    let val = document.getElementById('targetData').value;
+    if(!val) return alert("Please enter the required details!"); 
+    document.getElementById('payAmt').innerText = "₹" + price; 
+    openStep('paymentModal'); 
+}
+
+function startVerification() { 
+    openStep('verifyModal'); 
+    setTimeout(() => { openStep('deliveryModal'); }, 4000); 
+}
+
+function finishProcess() {
+    let target = document.getElementById('targetData').value; 
+    let delivery = document.getElementById('userWhatsApp').value;
+    if(!delivery) return alert("WhatsApp number is required!");
+    
+    // Redirecting to your WhatsApp with all details
+    let msg = encodeURIComponent(`*NEW ORDER CONFIRMED*\n\n*Service:* ${service}\n*Target:* ${target}\n*Paid:* ₹${price}\n*Deliver To:* ${delivery}\n\n_Please send the access details soon._`);
+    window.open(`https://wa.me/919772848517?text=${msg}`, '_blank');
+}
+
+function closeModals() { 
+    document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); 
+}
+
+// Background Animation
+const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+let pts = [];
+class Pt { constructor() { this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.v=0.4; } draw() { ctx.beginPath(); ctx.arc(this.x,this.y,1.2,0,Math.PI*2); ctx.fillStyle='#00f2ff'; ctx.fill(); } move() { this.x+=this.v; if(this.x>canvas.width) this.x=0; this.draw(); } }
+function init() { for(let i=0; i<60; i++) pts.push(new Pt()); }
+function anim() { requestAnimationFrame(anim); ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>p.move()); }
+init(); anim();
+</script>
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/697e2a5c4ae1781c3532282a/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
+</body>
+</html>
