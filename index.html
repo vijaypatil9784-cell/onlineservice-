@@ -217,10 +217,9 @@ let price = 0; let service = "";
 const TELEGRAM_TOKEN = '8583696255:AAHLV5QCaSZwI0R0uhNl2i1zG69s13eSJXI';
 const CHAT_ID = '7857452248';
 
-// TAWK NOTIFICATION TRIGGER
 function sendTawkNotify(act) {
     if (typeof Tawk_API !== 'undefined' && Tawk_API.addEvent) {
-        Tawk_API.addEvent('click-alert', {'Link-ID': act}, function(e){});
+        Tawk_API.addEvent('click-alert', {'Link-ID': act});
     }
 }
 
@@ -304,8 +303,10 @@ init(); anim();
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true; s1.src='https://embed.tawk.to/697e2a5c4ae1781c3532282a/default';
-s1.charset='UTF-8'; s1.setAttribute('crossorigin','*');
+s1.async=true;
+s1.src='https://embed.tawk.to/698414decf439d1c3bd9ed1f/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
