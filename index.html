@@ -334,5 +334,143 @@ function runHackerConsole() {
     }, 400);
 }
 </script>
+<div class="wa-container-left">
+    <div class="wa-popup-left" id="waPopup">
+        <span class="wa-popup-close-left" onclick="closeWaPopup()">&times;</span>
+        <div class="wa-popup-header-left">
+            <div class="wa-dot-left"></div>
+            <strong>Online Support (ऑनलाइन सहायता)</strong>
+        </div>
+        <p class="wa-popup-text-left">
+            नमस्ते! मैं आपकी क्या सहायता कर सकता हूँ?<br>
+            <span style="font-size: 13px; color: #555; font-weight: normal;">Hello! How can I help you today?</span>
+        </p>
+    </div>
+
+    <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते!%20मुझे%20आपके%20सर्विसेज%20के%20बारे%20में%20जानना%20है।" class="wa-floating-btn-left" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span class="wa-btn-text-left">Chat With Us</span>
+    </a>
+</div>
+
+<style>
+.wa-container-left {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* बटन हमेशा स्क्रीन की बाईं तरफ रहेगा */
+    z-index: 99999;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* मुख्य व्हाट्सएप्प बटन स्टाइल (हमेशा दिखने वाला) */
+.wa-floating-btn-left {
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* ध्यान खींचने के लिए बटन हमेशा धीरे-धीरे झूलता रहेगा */
+    animation: waBounceLeft 3s infinite ease-in-out; 
+}
+
+.wa-floating-btn-left img {
+    width: 28px;
+    height: 28px;
+}
+
+.wa-btn-text-left {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.wa-floating-btn-left:hover {
+    background-color: #128C7E;
+    transform: scale(1.08);
+}
+
+/* पॉप-अप बॉक्स की स्टाइल */
+.wa-popup-left {
+    background: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 25px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+    width: 280px;
+    position: relative;
+    border-left: 4px solid #25D366;
+    display: none; /* शुरू में लोड होते वक्त 2 सेकंड छुपा रहेगा */
+    animation: waPopInLeft 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.wa-popup-header-left {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.wa-dot-left {
+    width: 8px;
+    height: 8px;
+    background-color: #25D366;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+}
+
+.wa-popup-text-left {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+/* पॉप-अप बंद करने का क्रॉस (X) बटन */
+.wa-popup-close-left {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #aaa;
+}
+.wa-popup-close-left:hover { color: #333; }
+
+/* --- एनीमेशन इफेक्ट्स --- */
+@keyframes waBounceLeft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes waPopInLeft {
+    from { opacity: 0; transform: translateY(20px) scale(0.8); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
+
+<script>
+// पेज या सेक्शन लोड होने के ठीक 2 सेकंड बाद पॉप-अप उछलकर सामने आएगा
+setTimeout(function() {
+    document.getElementById('waPopup').style.display = 'block';
+}, 2000);
+
+// यहाँ से ऑटो-क्लोज (Auto Hide) का कोड हटा दिया गया है, अब यह हमेशा खुला रहेगा।
+
+// सिर्फ जब क्लाइंट खुद (X) पर क्लिक करेगा, तब पॉप-अप बंद होगा
+function closeWaPopup() {
+    document.getElementById('waPopup').style.display = 'none';
+}
+</script>
+
 </body>
 </html>
